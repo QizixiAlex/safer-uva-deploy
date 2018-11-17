@@ -1,0 +1,11 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" [opened] = "currentLocation">
+      <app-crime-prediction [setLocation]="currentLocation"></app-crime-prediction>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <agm-map [zoom]="15" [latitude]="centerLocation.lat" [longitude]="centerLocation.lng">
+          <agm-marker *ngIf="currentLocation" [latitude]="currentLocation.lat" [longitude]="currentLocation.lng" [markerDraggable]="false">
+          </agm-marker>
+        </agm-map>
+    </mat-sidenav-content>
+</mat-sidenav-container>

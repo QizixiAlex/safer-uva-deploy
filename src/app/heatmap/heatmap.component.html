@@ -1,0 +1,27 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" [opened] = "true">
+      <mat-card>
+          <p>Crime Type</p>
+          <mat-form-field>
+              <mat-select [(ngModel)]="selectedCrimeType">
+                  <mat-option *ngFor="let crimeType of crimeTypes" [value]="crimeType">{{ crimeType }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <p>Time Frame (Months)<p>
+            <mat-form-field>
+                <mat-select [(ngModel)]="selectedTimeFrame">
+                  <mat-option *ngFor="let timeFrame of timeFrames" [value]="timeFrame">{{ timeFrame }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-card-actions>
+                <button mat-button (click)="searchIncidents()">Search</button>
+            </mat-card-actions>
+      </mat-card>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <agm-map [zoom]="15" [latitude]="centerLocation.lat" [longitude]="centerLocation.lng">
+          <agm-marker *ngFor="let crimeLocation of crimeLocations" [latitude]="crimeLocation.lat" [longitude]="crimeLocation.lng" [markerDraggable]="false">
+          </agm-marker>
+        </agm-map>
+    </mat-sidenav-content>
+</mat-sidenav-container>
